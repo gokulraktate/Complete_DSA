@@ -92,6 +92,34 @@ Node* removeK(Node* head,int k){
 }
 
 
+Node* removeele(Node* head,int ele){
+    if(head==NULL) return head;
+    
+    if(head->data==ele){
+        Node* temp=head;
+        head=head->next;
+        free(temp);
+        return head;
+
+    }
+
+
+    Node*temp=head;
+    Node* prev=NULL;
+    while(temp!=NULL){
+        
+        if(temp->data==ele){
+            prev->next=prev->next->next;
+            free(temp);
+            break;
+        }
+        prev=temp;
+        temp=temp->next;
+    }
+    return head;
+}
+
+
 int main() {
     vector<int> arr = {2, 5, 8, 7};
      Node* head = ArrayToLL(arr);
@@ -102,7 +130,10 @@ int main() {
     //  head=deleteTail(head);
     //  print(head);
 
-    head=removeK(head,2);
+    // head=removeK(head,2);
+    // print(head);
+
+    head=removeele(head,8);
     print(head);
     
 }
